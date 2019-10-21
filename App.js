@@ -21,6 +21,8 @@ export default function App() {
             await Asset.loadAsync([
                 require('./assets/logo.png'),
             ]);
+            setLoaded(true);
+
             const cache = new InMemoryCache();
             await persistCache({
                 cache,
@@ -30,8 +32,6 @@ export default function App() {
                 cache,
                 ...apolloClientOptions
             });
-
-            setLoaded(true);
             setClient(client);
         } catch (e) {
           console.log(e);

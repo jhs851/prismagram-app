@@ -38,10 +38,10 @@ export default ({ navigation }) => {
 
             if (requestSecret) {
                 Alert.alert('Check your email');
-                navigation.navigate('Confirm');
+                navigation.navigate('Confirm', { email: value });
             } else {
                 Alert.alert('Account not found');
-                navigation.navigate('Signup');
+                navigation.navigate('Signup', { email: value });
             }
         } catch (e) {
             Alert.alert('Can\'t log in now');

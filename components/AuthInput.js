@@ -23,7 +23,7 @@ const AuthInput = ({
    returnKeyType = 'done',
    autoCorrect = true,
    onChange,
-   onEndEditing = () => null
+   onSubmitEditing = () => null
 }) => (
     <Container>
         <TextInput placeholder={placeholder}
@@ -33,7 +33,7 @@ const AuthInput = ({
                    returnKeyType={returnKeyType}
                    autoCorrect={autoCorrect}
                    onChangeText={onChange}
-                   onEndEditing={onEndEditing}
+                   onSubmitEditing={onSubmitEditing}
         />
     </Container>
 );
@@ -62,7 +62,7 @@ AuthInput.propTypes = {
         'search',
         'send',
     ]),
-    onEndEditing: PropTypes.func,
+    onSubmitEditing: PropTypes.func,
     autoCorrect: PropTypes.bool
 };
 

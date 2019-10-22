@@ -32,9 +32,17 @@ export default ({ navigation }) => {
 
         try {
             setLoading(true);
-            await requestSecretMutation();
-            Alert.alert('Check your email');
-            navigation.navigate('Confirm');
+            const {
+                data: { requestSecret }
+            } = await requestSecretMutation();
+
+            if (requestSecret) {
+                Alert.alert('Check your email');
+                navigation.navigate('Confirm');
+            } else {
+                Alert.alert('Account not found');
+                navigation.navigate('Signup');
+            }
         } catch (e) {
             Alert.alert('Can\'t log in now');
         } finally {
@@ -49,7 +57,7 @@ export default ({ navigation }) => {
                            placeholder="Email"
                            keyboardType="email-address"
                            returnKeyType="send"
-                           onEndEditing={handleLogin}
+                           onSubmitEditing={handleLogin}
                            autoCorrect={false}
                 />
 

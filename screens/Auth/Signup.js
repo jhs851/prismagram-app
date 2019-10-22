@@ -68,7 +68,7 @@ export default ({ navigation }) => {
                 navigation.navigate('Login', { email });
             }
         } catch (e) {
-            Alert.alert('Username taken.', 'Log in instead');
+            Alert.alert('Email taken.', 'Log in instead');
             navigation.navigate('Login', { email });
         } finally {
             setLoading(false);
@@ -77,12 +77,18 @@ export default ({ navigation }) => {
 
     const fbLogin = async () => {
         try {
+            setLoading(true);
             const { type, token } = await Facebook.logInWithReadPermissionsAsync('490982988296727', {
-                permissions: ['public_profile'],
+                permissions: ['public_profile', 'email'],
             });
             if (type === 'success') {
-                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-                Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
+                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,last_name,first_name,email`);
+                const { email, first_name, last_name } = await response.json();
+                emailInput.setValue(email);
+                fNameInput.setValue(first_name);
+                lNameInput.setValue(last_name);
+                usernameInput.setValue(email.split('@')[0]);
+                setLoading(false);
             } else {
                 // type === 'cancel'
             }
@@ -124,7 +130,7 @@ export default ({ navigation }) => {
                     <AuthButton bgColor="#2d4da7"
                                 text="Connect Facebook"
                                 onPress={fbLogin}
-                                loading={false}
+                                loading={loading}
                     />
                 </FBContainer>
             </View>

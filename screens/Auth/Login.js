@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
+import useInput from '../../hooks/useInput';
 
 const View = styled.View`
     justify-content: center;
@@ -9,10 +10,21 @@ const View = styled.View`
     flex: 1;
 `;
 
-export default () => (
-    <View>
-        <AuthInput placeholder="Email" value="" keyboardType="email-address" autoCapitalize="none" />
+export default () => {
+    const emailInput = useInput('');
+    const handleLogin = () => {
 
-        <AuthButton text="Log In" onPress={() => null}/>
-    </View>
-);
+    };
+
+    return (
+        <View>
+            <AuthInput placeholder="Email"
+                       value=""
+                       keyboardType="email-address"
+                       {...emailInput}
+            />
+
+            <AuthButton text="Log In" onPress={() => null}/>
+        </View>
+    );
+};

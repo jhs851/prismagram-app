@@ -3,7 +3,7 @@ import { View, Image, Platform } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../screens/Tabs/Home';
-import Search from '../screens/Tabs/Search';
+import Search from '../screens/Tabs/Search/index';
 import Notifications from '../screens/Tabs/Notifications';
 import Profile from '../screens/Tabs/Profile';
 import MessagesLink from '../components/MessagesLink';

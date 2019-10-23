@@ -29,18 +29,34 @@ const Location = styled.Text`
 `;
 
 const IconsContainer = styled.View`
-    padding: 10px;
     flex-direction: row;
+    margin-bottom: 5px;
 `;
 
 const IconContainer = styled.View`
     margin-right: 10px;
 `;
 
+const InfoContainer = styled.View`
+    padding: 10px;
+`;
+
+const Caption = styled.Text`
+    margin: 3px 0;
+`;
+
+const CommentCount = styled.Text`
+    opacity: .5;
+    font-size: 13px;
+`;
+
 const Post = ({
     user,
     location,
-    files = []
+    files = [],
+    likeCount,
+    caption,
+    comments = []
 }) => {
     return (
         <Container>
@@ -68,26 +84,39 @@ const Post = ({
                     />
                 )}
             </Swiper>
+            <InfoContainer>
+                <IconsContainer>
+                    <Touchable>
+                        <IconContainer>
+                            <Ionicons
+                                size={28}
+                                name={Platform.OS === 'ios' ? 'ios-heart-empty' : 'md-heart-empty'}
+                            />
+                        </IconContainer>
+                    </Touchable>
 
-            <IconsContainer>
+                    <Touchable>
+                        <IconContainer>
+                            <Ionicons
+                                size={28}
+                                name={Platform.OS === 'ios' ? 'ios-text' : 'md-text'}
+                            />
+                        </IconContainer>
+                    </Touchable>
+                </IconsContainer>
+
                 <Touchable>
-                    <IconContainer>
-                        <Ionicons
-                            size={28}
-                            name={Platform.os === 'ios' ? 'ios-heart-empty' : 'md-heart-empty'}
-                        />
-                    </IconContainer>
+                    <Bold>{likeCount === 1 ? '1 like' : `${likeCount} likes`}</Bold>
                 </Touchable>
 
+                <Caption>
+                    <Bold>{user.username}</Bold> {caption}
+                </Caption>
+
                 <Touchable>
-                    <IconContainer>
-                        <Ionicons
-                            size={28}
-                            name={Platform.os === 'ios' ? 'ios-heart-empty' : 'md-heart-empty'}
-                        />
-                    </IconContainer>
+                    <CommentCount>See all {comments.length} comments</CommentCount>
                 </Touchable>
-            </IconsContainer>
+            </InfoContainer>
         </Container>
     );
 };

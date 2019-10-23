@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost';
 import Loader from '../../components/Loader';
 import { useQuery } from 'react-apollo-hooks';
 import Post from '../../components/Post';
-import { POST_FREGMENT } from '../../fragments';
+import { POST_FRAGMENT } from '../../fragments';
 
 const FEED_QUERY = gql`
     {
@@ -13,7 +13,7 @@ const FEED_QUERY = gql`
             ...PostParts
         }
     }
-    ${POST_FREGMENT}
+    ${POST_FRAGMENT}
 `;
 
 const View = styled.View`

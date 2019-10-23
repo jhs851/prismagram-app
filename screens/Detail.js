@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import { ScrollView } from 'react-native';
 import { useQuery } from 'react-apollo-hooks';
 import { gql } from 'apollo-boost';
-import { POST_FREGMENT } from '../fragments';
+import { POST_FRAGMENT } from '../fragments';
 import Loader from '../components/Loader';
 import Post from '../components/Post';
 
@@ -12,10 +12,8 @@ const POST_DETAIL = gql`
             ...PostParts
         }
     }
-    ${POST_FREGMENT}
+    ${POST_FRAGMENT}
 `;
-
-const View = styled.View``;
 
 export default ({ navigation }) => {
     const { loading, data } = useQuery(POST_DETAIL, {
@@ -32,7 +30,9 @@ export default ({ navigation }) => {
 
     if (! loading && data && data.seeFullPost) {
         return (
-            <Post {...data.seeFullPost} />
+            <ScrollView>
+                <Post {...data.seeFullPost} />
+            </ScrollView>
         );
     }
 

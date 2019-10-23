@@ -5,5 +5,6 @@ export default {
     lightGreyColor: '#e6e6e6',
     redColor: '#ed4956',
     blueColor: '#3897f0',
-    darkBlueColor: '#003569'
+    darkBlueColor: '#003569',
+    headerColor: '#fafafa'
 };

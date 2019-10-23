@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, RefreshControl, Text } from 'react-native';
+import { ScrollView, RefreshControl } from 'react-native';
 import { gql } from 'apollo-boost';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo-hooks';
@@ -46,8 +46,6 @@ const SearchPresenter = ({ term, shouldFetch }) => {
             setRefreshing(false);
         }
     };
-
-    console.log(loading, data);
 
     if (loading) {
         return <Loader />;
